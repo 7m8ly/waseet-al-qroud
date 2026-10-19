@@ -1,6 +1,12 @@
-# <img src="assets/logo.jpeg" width="40" height="40" style="vertical-align: middle; border-radius: 8px;" />Waseet Al-Qroud (وسيط القروض) 🇮🇶
+<div align="center">
+  <img src="assets/logo.jpeg" width="110" height="110" style="border-radius: 50%; border: 3px solid #30363d; box-shadow: 0 4px 15px rgba(0,0,0,0.4);" />
+  
+  <h1>Waseet Al-Qroud (وسيط القروض) 🇮🇶</h1>
+  
+  <p><b>AI Loan Officer Agent for Agentic AI Challenge Iraq (ZainCash)</b></p>
+</div>
 
-> AI Loan Officer Agent for **Agentic AI Challenge Iraq** (ZainCash).
+---
 
 ## 📌 Overview
 
