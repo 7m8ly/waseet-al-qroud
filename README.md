@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/logo.jpeg" width="110" height="110" style="border-radius: 50%; border: 3px solid #30363d; box-shadow: 0 4px 15px rgba(0,0,0,0.4);" />
+  <img src="assets/logo.jpeg" width="135" height="135" style="border-radius: 24px; border: 3px solid #30363d; box-shadow: 0 6px 20px rgba(0,0,0,0.5);" />
   
   <h1>Waseet Al-Qroud (وسيط القروض) 🇮🇶</h1>
   
