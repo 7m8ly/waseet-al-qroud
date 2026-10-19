@@ -1,4 +1,4 @@
-# Waseet Al-Qroud (وسيط القروض) 🇮🇶
+# <img src="assets/logo.jpeg" width="40" height="40" style="vertical-align: middle; border-radius: 8px;" />Waseet Al-Qroud (وسيط القروض) 🇮🇶
 
 > AI Loan Officer Agent for **Agentic AI Challenge Iraq** (ZainCash).
 
