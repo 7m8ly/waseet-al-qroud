@@ -14,7 +14,7 @@ Unlike typical naive LLM applications, Waseet Al-Qroud strictly separates conver
 - **The Deterministic Core:** A robust Python-based engine that owns all completeness checks, consistency validations, loan rulebooks, and wallet indicators.
 - **Human-in-the-Loop:** Every collected file is presented clearly to a human loan officer who makes the final, binding credit decision.
 
-## 📂 Repository Structure
+## 📂 Repository Structure(Maybe will be like this)
 
 ```text
 ├── rulebook/          # Written eligibility rules, tiers, and policy thresholds
@@ -26,7 +26,7 @@ Unlike typical naive LLM applications, Waseet Al-Qroud strictly separates conver
 └── docs/              # User interviews, edge cases, failure modes, and design briefs
 ```
 
-## 🚀 Getting Started & Local Run
+## 🚀 Getting Started & Local Run(Not Ready for now🙃)
 
 ### 1. Clone the repository:
 ```bash
