@@ -1,5 +1,15 @@
-# Waseet Al-Qroud (وسيط القروض)
-**AI Loan Officer Agent** · Agentic AI Challenge Iraq (ZainCash) · Topic 03 · Ahmed Mohammed & Mustafa Ahmed
+<p align="center">
+  <img src="assets/logo.png" alt="Waseet Al-Qroud Logo" width="180" height="180">
+</p>
+
+<h1 align="center">Waseet Al-Qroud (وسيط القروض)</h1>
+
+<p align="center">
+  <strong>AI Loan Officer Agent</strong> · Agentic AI Challenge Iraq (ZainCash) · Topic 03<br>
+  <strong>Ahmed Mohammed & Mustafa Ahmed</strong>
+</p>
+
+---
 
 Small-credit applicants in Iraq don't know what is required and are declined without a reason they can act on. Waseet collects the application (guided form, with an optional chat assistant that understands Iraqi dialect, Modern Standard Arabic and Arabizi), checks it against a **written rulebook**, explains every gap in plain words, and hands a complete file to a loan officer. **It never approves or declines. A human decides, and every file says a field visit is required.**
 
