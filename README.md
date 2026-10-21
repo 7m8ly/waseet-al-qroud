@@ -1,61 +1,42 @@
-<div align="center">
-  <img src="assets/logo.jpeg" width="135" height="135" style="border-radius: 24px; border: 3px solid #30363d; box-shadow: 0 6px 20px rgba(0,0,0,0.5);" />
-  
-  <h1>Waseet Al-Qroud (وسيط القروض) 🇮🇶</h1>
-  
-  <p><b>AI Loan Officer Agent for Agentic AI Challenge Iraq (ZainCash)</b></p>
-</div>
+# Waseet Al-Qroud (وسيط القروض)
+**AI Loan Officer Agent** · Agentic AI Challenge Iraq (ZainCash) · Topic 03 · Ahmed Mohammed & Mustafa Ahmed
 
----
+Small-credit applicants in Iraq don't know what is required and are declined without a reason they can act on. Waseet collects the application (guided form, with an optional chat assistant that understands Iraqi dialect, Modern Standard Arabic and Arabizi), checks it against a **written rulebook**, explains every gap in plain words, and hands a complete file to a loan officer. **It never approves or declines. A human decides, and every file says a field visit is required.**
 
-## 📌 Overview
+## Principles
+1. Prepare and explain; a human decides.
+2. The model converses, the code judges (rules, math and state live in Python).
+3. Every number traces to a tool result.
+4. Fair by construction: name, gender, religion, governorate and device never enter the engine.
 
-**Waseet Al-Qroud** transforms a messy, opaque credit intake process into a complete, explained file in the time it takes to have a conversation. It allows small traders, drivers, and home-based workers in Iraq to apply for small loans effortlessly by chatting naturally in the **Iraqi dialect**.
+## Architecture
+Applicant → intake + confirmation gate (LLM → JSON, Pydantic) → deterministic core (six tools, SQLite, audit log) → explanation + guards (facts-only phrasing, verdict filter, number-grounding check, safe-template fallback) → underwriter file → human decision.
+Tools: `check_completeness` · `compute_indicators` · `run_rules` · `compute_installment_options` · `build_explanation_facts` · `build_underwriter_file`.
 
-## 🛡️ Core Architecture & Philosophy
+## Repository
+| Folder | Contents |
+|---|---|
+| `rulebook/` | `RULEBOOK.md` (readable) and `rulebook.yaml` (what the engine reads), v1.1 |
+| `engine/` | deterministic core |
+| `llm/` | prompts, extraction schemas, guards |
+| `data/` | synthetic profiles and dialogues, generation seeds and prompts |
+| `eval/` | frozen held-out set (git tag `testset-frozen`), promptfoo configs, results |
+| `app/` | Streamlit app (applicant and underwriter views) |
+| `docs/` | `interviews/`, `MODELS.md`, `FAILURE_MODES.md`, `DECISIONS.md` |
 
-Unlike typical naive LLM applications, Waseet Al-Qroud strictly separates conversational fluidity from critical decision-making:
+## Status (update at every milestone)
+- [x] Design brief submitted (22 Oct 2026)
+- [ ] Held-out set frozen (by 29 Oct)
+- [ ] Engine and tests, Micro first (by 31 Oct)
+- [ ] LLM layer + Streamlit end to end (by 5 Nov)
+- [ ] MVP submitted (8 Nov)
 
-- **The LLM Layer:** Handles dialect NLU, friendly chat, field extraction, and grounded explanations. *It never computes rules, numbers, or credit decisions.*
-- **The Deterministic Core:** A robust Python-based engine that owns all completeness checks, consistency validations, loan rulebooks, and wallet indicators.
-- **Human-in-the-Loop:** Every collected file is presented clearly to a human loan officer who makes the final, binding credit decision.
+## Data and honesty
+All data is synthetic: no real person, document or transaction. Results are reported as counts on a frozen held-out set (e.g. 11/12), misses included.
 
-## 📂 Repository Structure(Maybe will be like this)
-
-```text
-├── rulebook/          # Written eligibility rules, tiers, and policy thresholds
-├── engine/            # Deterministic core (completeness, consistency, rules, math)
-├── llm/               # Prompts, NLU definitions, and guardrails
-├── data/              # Synthetic applicant profiles & Iraqi-dialect dialogue datasets
-├── eval/              # Held-out test sets, evaluation scripts, and metrics (promptfoo)
-├── app/               # Streamlit web interface for applicants and underwriter view
-└── docs/              # User interviews, edge cases, failure modes, and design briefs
+## Run (not ready yet)
 ```
-
-## 🚀 Getting Started & Local Run(Not Ready for now🙃)
-
-### 1. Clone the repository:
-```bash
-git clone https://github.com/7m8ly/waseet-al-qroud.git
-cd waseet-al-qroud
-```
-
-### 2. Install dependencies:
-```bash
 pip install -r requirements.txt
-```
-
-### 3. Set up your environment variables (`.env`):
-```env
-GROQ_API_KEY=your_groq_api_key_here
-GEMINI_API_KEY=your_gemini_api_key_here
-```
-
-### 4. Run the Streamlit app:
-```bash
+cp .env.example .env   # add your own keys; never commit .env
 streamlit run app/main.py
 ```
-
-## 🎯 Challenge Context
-
-Developed for the **Agentic AI Challenge Iraq** by ZainCash. Built with a strict commitment to safety, zero-tolerance guardrails against hallucinated loan decisions, and full audit logging for every tool call.

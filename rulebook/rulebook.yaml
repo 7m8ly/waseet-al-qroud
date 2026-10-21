@@ -1,0 +1,49 @@
+# Waseet Al-Qroud rulebook, v1.1 (machine-readable; the engine reads ONLY this file)
+# Sources: officer = loan-officer interview 20/10/2026; assumption = our design choice, to be reviewed with a practitioner.
+version: "1.1"
+currency: IQD
+
+products:
+  micro:    {amount_min: 250000,  amount_max: 2500000,  term_min: 3,  term_max: 12, activity_months_min: 12}  # activity: assumption
+  minor:    {amount_min: 2500001, amount_max: 8000000,  term_min: 13, term_max: 20, activity_months_min: 36}  # officer range 1-5y; 36 = our interpolation
+  moderate: {amount_min: 8000001, amount_max: 15000000, term_min: 21, term_max: 30, activity_months_min: 60}  # same
+
+installment:
+  formula: "amount * (1 + annual_flat_fee * term_months / 12) / term_months"
+  annual_flat_fee: null          # TODO: declare a value before the MVP (assumption)
+
+completeness:                    # C1..C10; any missing -> status "incomplete"
+  required: [identity, wallet_phone, residence, activity_and_start_date,
+             declared_net_monthly_income, amount_and_term, loan_purpose,
+             proof_of_activity, guarantee, consent_wallet_analysis]
+  guarantee_required_for: [micro, minor, moderate]     # officer: missing guarantees are the top refusal reason
+  guarantee_types: [guarantor, collateral_document]
+  accepted_proof_documents:                            # officer
+    [lease_contract, business_licence, professional_licence, purchase_invoices, inspection_report]
+  consent_wallet_analysis: optional_with_documents_only_path   # trader: uneasy about wallet analysis
+
+eligibility:
+  E1: {age_min: 18, age_max: 65}                                  # assumption
+  E2: {activity_months_min: per_product}                          # see products
+  E3: {max_obligations_plus_installment_to_net_income: 0.50}      # officer (replaces our 35%)
+  E4: {income_evidence: [wallet_history_sufficient, accepted_document]}
+
+consistency:
+  X1: {wallet_median_to_declared_ratio_below: 0.60, action: ask_about_cash_income, auto_fail: false}
+  X2: {names_and_dates_must_match: true}
+  X3: {contradictory_answers: re_ask, store_until_confirmed: false}
+
+recognised_income: "declared net monthly income that the wallet median or an accepted document supports"
+
+indicators:                      # inputs for the human, never verdicts
+  real_inflow_excludes: [self_transfers, refunds, loan_proceeds]
+  regularity:     {window_weeks: 26, role: display_only}
+  variability:    {measure: coefficient_of_variation_monthly, role: display_only}
+  typical_income: {measure: median_monthly_inflow, role: feeds_X1}
+  data_depth:     {sufficient_months: 3, sufficient_inflows: 20, role: feeds_E4}   # below -> label "low data"
+
+outputs: [ready_for_review, incomplete, needs_clarification, outside_product_limits]   # no approve/decline state
+every_file_flags: field_visit_required     # officer: automation alone is not enough
+fairness:
+  never_enter_engine: [name, gender, religion, governorate, device]
+  irregular_or_seasonal_income_penalised: false
