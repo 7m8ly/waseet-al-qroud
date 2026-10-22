@@ -82,25 +82,22 @@ None. Income is almost fully allocated to living requirements.
 **Q1. What is most often missing from small applicants' files?**
 Data, documentation and the accuracy of submitted data.
 
-**Q2. How much time goes to chasing documents compared with assessment?**
-Not much, because the requirements are simple and not complex. If a required document is missing, the application is rejected or postponed.
-
-**Q3. What are the most common reasons for rejection? Does the applicant understand them?**
+**Q2. What are the most common reasons for rejection? Does the applicant understand them?**
 Lack of collateral against the amount granted, and the feasibility or purpose of the financing. Whether applicants understand the reasons was not stated.
 
-**Q4. Which documents do you accept as evidence of activity and income for cash-based applicants?**
+**Q3. Which documents do you accept as evidence of activity and income for cash-based applicants?**
 Lease contract, business licence, professional practice licence, purchase invoices for goods, a project inspection report, and similar.
 
-**Q5. What payment-to-income ratio is acceptable? When do you require a guarantor?**
+**Q4. What payment-to-income ratio is acceptable? When do you require a guarantor?**
 The monthly installment must not exceed 50% of income or net income. The guarantor trigger was not stated separately; collateral was discussed under Q3.
 
-**Q6. How long an activity history do you require, for small and large loans?**
+**Q5. How long an activity history do you require, for small and large loans?**
 Depends on the loan amount, from one year to five years.
 
-**Q7. If a ready, organised file arrived with open questions, what must it contain?**
+**Q6. If a ready, organised file arrived with open questions, what must it contain?**
 Complete applicant information, the requested amount, the purpose of financing and the collateral.
 
-**Q8. What must an automated tool never do?**
+**Q7. What must an automated tool never do?**
 Automated processing alone is not enough. On-site field inspection is required.
 
 **Recorded wording (Arabic)**
