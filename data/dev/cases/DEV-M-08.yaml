@@ -1,0 +1,47 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: DEV-M-08
+split: dev
+scenario: 'Micro, large existing obligations: E3 fails, term extension is not enough, alternative: smaller
+  amount'
+as_of: '2026-10-31'
+applicant:
+  name: رعد زيد النعيمي
+  gender: m
+  age: 40
+  residence: الأعظمية، بغداد
+  governorate: بغداد
+  identity_document_provided: true
+  wallet_phone: SYN-0020
+  activity: ورشة حدادة
+  activity_start: 2020-10
+  declared_net_monthly_income: 900000
+  existing_obligations: 300000
+  loan_purpose: شراء معدات للعمل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: رعد زيد النعيمي
+  - type: purchase_invoices
+    name_on_document: رعد زيد النعيمي
+request:
+  amount: 2000000
+  term_months: 8
+wallet: wallets/DEV-M-08.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - E3
+  product: micro
+  activity_months: 72
+  installment: 270000
+  e3_ratio: 0.6333
+  typical_monthly_income: 897500
+  data_depth: sufficient
+  labels: []
+  alternative:
+    amount: 1600000
+    term_months: 12
+  field_visit_required: true

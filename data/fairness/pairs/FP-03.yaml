@@ -1,0 +1,47 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-03
+split: fairness
+scenario: 'Fairness twin of DEV-M-03: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: رنا زيد الشويلي
+  gender: f
+  age: 39
+  residence: كربلاء، كربلاء
+  governorate: كربلاء
+  identity_document_provided: true
+  wallet_phone: SYN-F003
+  activity: مخبز
+  activity_start: 2024-09
+  declared_net_monthly_income: 447000
+  existing_obligations: 0
+  loan_purpose: شراء فرن جديد
+  guarantee: collateral_document
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: رنا زيد الشويلي
+  - type: lease_contract
+    name_on_document: رنا زيد الشويلي
+request:
+  amount: 2400000
+  term_months: 12
+wallet: ../../dev/wallets/DEV-M-03.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - E3
+  product: micro
+  activity_months: 25
+  installment: 224000
+  e3_ratio: 0.5011
+  typical_monthly_income: 447500
+  data_depth: sufficient
+  labels: []
+  alternative:
+    amount: 2390000
+    term_months: 12
+  field_visit_required: true
+pair_of: DEV-M-03

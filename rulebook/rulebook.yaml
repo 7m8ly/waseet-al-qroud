@@ -1,6 +1,7 @@
-# Waseet Al-Qroud rulebook, v1.1 (machine-readable; the engine reads ONLY this file)
+# Waseet Al-Qroud rulebook, v1.2 (machine-readable; the engine reads ONLY this file)
 # Sources: officer = loan-officer interview 20/10/2026; assumption = our design choice, to be reviewed with a practitioner.
-version: "1.1"
+# v1.2 = v1.1 + the decisions D1-D8 in docs/DECISIONS.md, needed so every test case has exactly one correct outcome.
+version: "1.2"
 currency: IQD
 
 products:
@@ -10,40 +11,64 @@ products:
 
 installment:
   formula: "amount * (1 + annual_flat_fee * term_months / 12) / term_months"
-  annual_flat_fee: null          # TODO: declare a value before the MVP (assumption)
+  annual_flat_fee_percent: 12      # D1 (assumption): declared value; replace if the officer gives a real one
+  rounding: ceil_to_dinar          # D5: integer arithmetic; amount*(1200+fee_pct*term) / (1200*term), rounded UP
 
-completeness:                    # C1..C10; any missing -> status "incomplete"
+completeness:                      # C1..C10; any missing -> status "incomplete"
   required: [identity, wallet_phone, residence, activity_and_start_date,
              declared_net_monthly_income, amount_and_term, loan_purpose,
-             proof_of_activity, guarantee, consent_wallet_analysis]
+             proof_of_activity, guarantee, consent_decision_recorded]
   guarantee_required_for: [micro, minor, moderate]     # officer: missing guarantees are the top refusal reason
   guarantee_types: [guarantor, collateral_document]
-  accepted_proof_documents:                            # officer
+  activity_proof_documents:                            # C8: officer's list
     [lease_contract, business_licence, professional_licence, purchase_invoices, inspection_report]
-  consent_wallet_analysis: optional_with_documents_only_path   # trader: uneasy about wallet analysis
+  consent_wallet_analysis: optional_with_documents_only_path   # D8: C10 is met by RECORDING a yes or a no; no answer = incomplete
 
 eligibility:
+  P1: {amount_and_term_within_product: true}                      # D2: amount maps to a product; term inside that product's range
   E1: {age_min: 18, age_max: 65}                                  # assumption
   E2: {activity_months_min: per_product}                          # see products
-  E3: {max_obligations_plus_installment_to_net_income: 0.50}      # officer (replaces our 35%)
-  E4: {income_evidence: [wallet_history_sufficient, accepted_document]}
+  E3: {max_obligations_plus_installment_to_net_income: 0.50}      # officer; exact test (obligations + installment) * 2 <= income
+  E4:                                                             # D6: licences prove the activity exists, not the income
+    income_evidence: [wallet_history_sufficient, income_evidence_document]
+    income_evidence_documents: [lease_contract, purchase_invoices, inspection_report]
 
 consistency:
-  X1: {wallet_median_to_declared_ratio_below: 0.60, action: ask_about_cash_income, auto_fail: false}
-  X2: {names_and_dates_must_match: true}
-  X3: {contradictory_answers: re_ask, store_until_confirmed: false}
+  X1: {wallet_median_to_declared_ratio_below: 0.60, action: ask_about_cash_income, auto_fail: false,
+       evaluated_only_when: wallet_read_and_data_depth_sufficient}   # D7: thin history is never penalised
+  X2: {names_on_documents_must_match_applicant: true, dates: not_yet_defined}   # only names are tested; see DECISIONS "Open"
+  X3: {contradictory_answers: re_ask, store_until_confirmed: false}              # tested in dialogues, not in profiles
 
-recognised_income: "declared net monthly income that the wallet median or an accepted document supports"
+recognised_income: >
+  D7: E3 is always evaluated on the declared net monthly income. The wallet median and documents decide whether
+  that figure is SUPPORTED (X1, E4). When X1 triggers, the ratio on the wallet median is also reported to the
+  underwriter as information; it never changes the status by itself.
 
-indicators:                      # inputs for the human, never verdicts
-  real_inflow_excludes: [self_transfers, refunds, loan_proceeds]
+status_priority:                   # D3: the first line that applies wins
+  - {when: any_of_C1_to_C10_missing, state: incomplete}
+  - {when: X2_or_X3, state: needs_clarification}
+  - {when: E1_or_E2_or_P1_or_E3_fails, state: outside_product_limits, alternative: only_if_E3_is_the_sole_cause}
+  - {when: E4_fails, state: needs_clarification, action: request_income_evidence_document}
+  - {when: X1_triggers, state: needs_clarification, action: ask_about_cash_income}
+  - {otherwise: true, state: ready_for_review}
+
+alternative_offer:                 # D4: only when E3 is the sole cause; never pushes a loan
+  step_1: keep_the_amount_and_extend_to_the_SHORTEST_term_that_fits_up_to_product_maximum   # D4 (revised): shorter term = lower total cost
+  step_2: reduce_amount_at_maximum_term_rounded_down_to_10000
+  must_stay_inside_same_product_amount_range: true
+  if_nothing_fits: no_alternative_say_so_plainly
+
+indicators:                        # inputs for the human, never verdicts; definitions in data/DATA_SPEC.md
+  real_inflow_excludes: [self_transfer, refund, loan_proceeds, outflow]
   regularity:     {window_weeks: 26, role: display_only}
   variability:    {measure: coefficient_of_variation_monthly, role: display_only}
-  typical_income: {measure: median_monthly_inflow, role: feeds_X1}
-  data_depth:     {sufficient_months: 3, sufficient_inflows: 20, role: feeds_E4}   # below -> label "low data"
+  typical_income: {measure: median_monthly_inflow, window_months: 6, role: feeds_X1}
+  data_depth:     {sufficient_months: 3, sufficient_inflows: 20, role: feeds_E4_and_X1}   # below -> label "low_data"
 
 outputs: [ready_for_review, incomplete, needs_clarification, outside_product_limits]   # no approve/decline state
 every_file_flags: field_visit_required     # officer: automation alone is not enough
 fairness:
   never_enter_engine: [name, gender, religion, governorate, device]
   irregular_or_seasonal_income_penalised: false
+engine_inputs:
+  as_of: required_parameter        # D5: the engine takes the reference date as a parameter (tests use 2026-10-31)

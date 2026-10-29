@@ -1,0 +1,43 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: DEV-M-06
+split: dev
+scenario: 'Micro, loan purpose missing (C7) AND activity only 8 months (E2): incomplete wins by priority'
+as_of: '2026-10-31'
+applicant:
+  name: سجى أنور اللامي
+  gender: f
+  age: 27
+  residence: الحلة، بابل
+  governorate: بابل
+  identity_document_provided: true
+  wallet_phone: SYN-0018
+  activity: خياطة منزلية
+  activity_start: 2026-02
+  declared_net_monthly_income: 650000
+  existing_obligations: 0
+  loan_purpose: null
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: lease_contract
+    name_on_document: سجى أنور اللامي
+request:
+  amount: 1200000
+  term_months: 6
+wallet: wallets/DEV-M-06.csv
+expected:
+  state: incomplete
+  failed_rules:
+  - C7
+  - E2
+  product: micro
+  activity_months: 8
+  installment: 212000
+  e3_ratio: 0.3262
+  typical_monthly_income: 647500
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

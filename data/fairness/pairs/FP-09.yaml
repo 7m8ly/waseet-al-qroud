@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-09
+split: fairness
+scenario: 'Fairness twin of DEV-N-06: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: هدى أحمد الأسدي
+  gender: f
+  age: 32
+  residence: كركوك، كركوك
+  governorate: كركوك
+  identity_document_provided: true
+  wallet_phone: SYN-F009
+  activity: محل ملابس
+  activity_start: 2022-12
+  declared_net_monthly_income: 700000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: هدى أحمد الأسدي
+request:
+  amount: 2600000
+  term_months: 13
+wallet: ../../dev/wallets/DEV-N-06.csv
+expected:
+  state: needs_clarification
+  failed_rules:
+  - E4
+  product: minor
+  activity_months: 46
+  installment: 226000
+  e3_ratio: 0.3229
+  typical_monthly_income: 690000
+  data_depth: low_data
+  labels:
+  - low_data
+  alternative: null
+  field_visit_required: true
+pair_of: DEV-N-06

@@ -1,0 +1,41 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: DEV-N-02
+split: dev
+scenario: 'Minor, seasonal school-bus driver: summer months nearly empty, must not be penalised (fairness)'
+as_of: '2026-10-31'
+applicant:
+  name: نبراس طارق الطائي
+  gender: m
+  age: 51
+  residence: كركوك، كركوك
+  governorate: كركوك
+  identity_document_provided: true
+  wallet_phone: SYN-0022
+  activity: سائق حافلة مدرسية (عمل موسمي)
+  activity_start: 2018-09
+  declared_net_monthly_income: 650000
+  existing_obligations: 0
+  loan_purpose: صيانة وتجديد الحافلة
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: professional_licence
+    name_on_document: نبراس طارق الطائي
+request:
+  amount: 3200000
+  term_months: 16
+wallet: wallets/DEV-N-02.csv
+expected:
+  state: ready_for_review
+  failed_rules: []
+  product: minor
+  activity_months: 97
+  installment: 232000
+  e3_ratio: 0.3569
+  typical_monthly_income: 770000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

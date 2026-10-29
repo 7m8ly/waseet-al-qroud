@@ -1,0 +1,43 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: DEV-M-04
+split: dev
+scenario: 'Micro, 3 months of wallet but only 15 inflows (both conditions needed): low_data, offset by
+  purchase invoices'
+as_of: '2026-10-31'
+applicant:
+  name: حسين حيدر الطائي
+  gender: m
+  age: 28
+  residence: الرمادي، الأنبار
+  governorate: الأنبار
+  identity_document_provided: true
+  wallet_phone: SYN-0016
+  activity: محل خضار وفواكه
+  activity_start: 2025-09
+  declared_net_monthly_income: 480000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: purchase_invoices
+    name_on_document: حسين حيدر الطائي
+request:
+  amount: 1000000
+  term_months: 8
+wallet: wallets/DEV-M-04.csv
+expected:
+  state: ready_for_review
+  failed_rules: []
+  product: micro
+  activity_months: 13
+  installment: 135000
+  e3_ratio: 0.2812
+  typical_monthly_income: 480000
+  data_depth: low_data
+  labels:
+  - low_data
+  alternative: null
+  field_visit_required: true

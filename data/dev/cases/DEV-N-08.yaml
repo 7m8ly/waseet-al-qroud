@@ -1,0 +1,45 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: DEV-N-08
+split: dev
+scenario: 'Minor, name mismatch (X2) AND installment too high (E3): needs_clarification wins by priority'
+as_of: '2026-10-31'
+applicant:
+  name: أيمن سامر النعيمي
+  gender: m
+  age: 49
+  residence: كربلاء، كربلاء
+  governorate: كربلاء
+  identity_document_provided: true
+  wallet_phone: SYN-0028
+  activity: تجارة جملة
+  activity_start: 2020-01
+  declared_net_monthly_income: 800000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: lease_contract
+    name_on_document: أيمن سامر النعيمي
+  - type: purchase_invoices
+    name_on_document: عدنان عباس اللامي
+request:
+  amount: 6400000
+  term_months: 16
+wallet: wallets/DEV-N-08.csv
+expected:
+  state: needs_clarification
+  failed_rules:
+  - E3
+  - X2
+  product: minor
+  activity_months: 81
+  installment: 464000
+  e3_ratio: 0.58
+  typical_monthly_income: 800000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

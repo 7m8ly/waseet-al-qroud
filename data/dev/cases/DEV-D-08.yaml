@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: DEV-D-08
+split: dev
+scenario: 'Moderate, wallet-analysis decision not recorded (C10): incomplete'
+as_of: '2026-10-31'
+applicant:
+  name: حيدر فراس الموسوي
+  gender: m
+  age: 48
+  residence: الأعظمية، بغداد
+  governorate: بغداد
+  identity_document_provided: true
+  wallet_phone: SYN-0036
+  activity: محل مواد غذائية بالجملة
+  activity_start: 2016-01
+  declared_net_monthly_income: 1900000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: guarantor
+  consent_wallet: null
+  documents:
+  - type: business_licence
+    name_on_document: حيدر فراس الموسوي
+  - type: purchase_invoices
+    name_on_document: حيدر فراس الموسوي
+request:
+  amount: 11400000
+  term_months: 24
+wallet: null
+expected:
+  state: incomplete
+  failed_rules:
+  - C10
+  product: moderate
+  activity_months: 129
+  installment: 589000
+  e3_ratio: 0.31
+  typical_monthly_income: null
+  data_depth: not_read
+  labels: []
+  alternative: null
+  field_visit_required: true

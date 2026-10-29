@@ -1,0 +1,277 @@
+# Synthetic application dialogues. Expected values were derived by hand from the text.
+# Dialect labels are approximate; a native reader should review before the set is frozen.
+- id: DEV-DLG-01
+  dialect: baghdadi
+  turns:
+  - أريد أخذ قرض نص مليون، وأرجّعه بأربع شهور
+  - راتبي من الشغل حدود تلتمية ألف
+  expected:
+    amount: 500000
+    term_months: 4
+    monthly_income: 300000
+    action: confirm
+  split: dev
+- id: DEV-DLG-02
+  dialect: baghdadi
+  turns:
+  - شكد گدر آخذ إذا أريد مليون وربع؟ أسدده بسنة
+  - دخلي بالشهر مليون إلا ربع
+  expected:
+    amount: 1250000
+    term_months: 12
+    monthly_income: 750000
+    action: confirm
+  split: dev
+- id: DEV-DLG-03
+  dialect: baghdadi
+  turns:
+  - اريد قرض مليونين، اسدده بسنتين
+  - الدخل الصافي حوالي مليون ومية ألف
+  expected:
+    amount: 2000000
+    term_months: 24
+    monthly_income: 1100000
+    action: confirm
+  split: dev
+- id: DEV-DLG-04
+  dialect: baghdadi
+  turns:
+  - آني بقال، اريد قرض ثلاث ملايين حتى اشتري بضاعة، واسدده بسنة ونص
+  - دخلي مليون وثمنميه ألف بالشهر
+  expected:
+    amount: 3000000
+    term_months: 18
+    monthly_income: 1800000
+    action: confirm
+  split: dev
+- id: DEV-DLG-05
+  dialect: baghdadi
+  turns:
+  - اريد 750 ألف، وارجّعهم بثمان شهور
+  - دخلي نص مليون بالشهر
+  expected:
+    amount: 750000
+    term_months: 8
+    monthly_income: 500000
+    action: confirm
+  split: dev
+- id: DEV-DLG-06
+  dialect: baghdadi
+  turns:
+  - اريد قرض كم مليون بس مو متأكد شكد، وارجّعه بسنة تقريباً
+  expected:
+    amount: null
+    term_months: 12
+    monthly_income: null
+    action: ask_again
+  note: 'amount is ''a few millions'': must ask'
+  split: dev
+- id: DEV-DLG-07
+  dialect: baghdadi
+  turns:
+  - هلا، محتاج ربع مليون بس، ارجعهم بثلاث شهور
+  - دخلي مية وخمسين ألف
+  expected:
+    amount: 250000
+    term_months: 3
+    monthly_income: 150000
+    action: confirm
+  split: dev
+- id: DEV-DLG-08
+  dialect: basrawi
+  turns:
+  - اريد قرض مليون ونص، واسدّه بسنتين
+  - دخلي بالشهر ثمنميّة وخمسين ألف
+  expected:
+    amount: 1500000
+    term_months: 24
+    monthly_income: 850000
+    action: confirm
+  split: dev
+- id: DEV-DLG-09
+  dialect: basrawi
+  turns:
+  - هلا، اريد مليونين، لا لحظة، مليونين وربع، اسدّه بسنة ونص
+  - اربح بالشهر مليون إلا ربع
+  expected:
+    amount: 2250000
+    term_months: 18
+    monthly_income: 750000
+    action: confirm
+  split: dev
+- id: DEV-DLG-10
+  dialect: basrawi
+  turns:
+  - اريد نص مليون، وارجعه بخمس شهور
+  - دخلي حدود أربعمية ألف
+  expected:
+    amount: 500000
+    term_months: 5
+    monthly_income: 400000
+    action: confirm
+  split: dev
+- id: DEV-DLG-11
+  dialect: basrawi
+  turns:
+  - اريد قرض مليونين، بس شكد مدة لازم اسدّه؟
+  - دخلي بالشهر مليون
+  expected:
+    amount: 2000000
+    term_months: null
+    monthly_income: 1000000
+    action: ask_again
+  note: 'term missing: must ask'
+  split: dev
+- id: DEV-DLG-12
+  dialect: basrawi
+  turns:
+  - اريد أربع ملايين، أسدّه بسنة وثمان شهور
+  - دخلي مليونين بالشهر
+  expected:
+    amount: 4000000
+    term_months: 20
+    monthly_income: 2000000
+    action: confirm
+  split: dev
+- id: DEV-DLG-13
+  dialect: mosuli
+  turns:
+  - آني عندي مطعم صغير، اريد قرض ثلاث ملايين، واسدّده بسنتين
+  - الدخل الصافي مليون ونص
+  expected:
+    amount: 3000000
+    term_months: 24
+    monthly_income: 1500000
+    action: confirm
+  split: dev
+- id: DEV-DLG-14
+  dialect: mosuli
+  turns:
+  - هسّة اريد مليون وربع، بثمان شهور
+  - دخلي كلّش قليل، حدود خمسمية وخمسين ألف
+  expected:
+    amount: 1250000
+    term_months: 8
+    monthly_income: 550000
+    action: confirm
+  split: dev
+- id: DEV-DLG-15
+  dialect: mosuli
+  turns:
+  - اريد قرض نص مليون واسدّه بستة شهور
+  - راتبي ثلاثمية ألف
+  expected:
+    amount: 500000
+    term_months: 6
+    monthly_income: 300000
+    action: confirm
+  split: dev
+- id: DEV-DLG-16
+  dialect: mosuli
+  turns:
+  - اريد مبلغ حتى اجدّد المحل، شو الأفضل؟
+  expected:
+    amount: null
+    term_months: null
+    monthly_income: null
+    action: ask_again
+  note: no figures
+  split: dev
+- id: DEV-DLG-17
+  dialect: arabizi
+  turns:
+  - salam, areed milyon w rub3, asaddidhom b sana
+  - dakhli 700 alf
+  expected:
+    amount: 1250000
+    term_months: 12
+    monthly_income: 700000
+    action: confirm
+  split: dev
+- id: DEV-DLG-18
+  dialect: arabizi
+  turns:
+  - areed qarid 2 milyon w nos, b sanateen
+  - dakhli milyon b shahar
+  expected:
+    amount: 2500000
+    term_months: 24
+    monthly_income: 1000000
+    action: confirm
+  split: dev
+- id: DEV-DLG-19
+  dialect: arabizi
+  turns:
+  - hala areed 300 alf, arjaa3hom b 5 shhor
+  - dakhli 450 alf
+  expected:
+    amount: 300000
+    term_months: 5
+    monthly_income: 450000
+    action: confirm
+  split: dev
+- id: DEV-DLG-20
+  dialect: arabizi
+  turns:
+  - areed milyon ila rub3 w asaddid b sana w nos
+  - dakhli b shahar 600 alf
+  expected:
+    amount: 750000
+    term_months: 18
+    monthly_income: 600000
+    action: confirm
+  split: dev
+- id: DEV-DLG-21
+  dialect: arabizi
+  turns:
+  - areed qarid, bs ma a3raf shgad
+  expected:
+    amount: null
+    term_months: null
+    monthly_income: null
+    action: ask_again
+  note: no figures
+  split: dev
+- id: DEV-DLG-22
+  dialect: msa
+  turns:
+  - أرغب في قرض بمبلغ مليونين وخمسمئة ألف دينار لمدة اثني عشر شهراً.
+  - دخلي الشهري ثمانمئة ألف دينار.
+  expected:
+    amount: 2500000
+    term_months: 12
+    monthly_income: 800000
+    action: confirm
+  split: dev
+- id: DEV-DLG-23
+  dialect: msa
+  turns:
+  - أحتاج إلى قرض قدره مليون دينار يسدد خلال ستة أشهر.
+  - يبلغ دخلي الشهري ستمئة وخمسين ألف دينار.
+  expected:
+    amount: 1000000
+    term_months: 6
+    monthly_income: 650000
+    action: confirm
+  split: dev
+- id: DEV-DLG-24
+  dialect: msa
+  turns:
+  - أرغب بالحصول على ثمانية ملايين دينار لمدة سبعة عشر شهراً.
+  - صافي دخلي الشهري مليونان وخمسمئة ألف.
+  expected:
+    amount: 8000000
+    term_months: 17
+    monthly_income: 2500000
+    action: confirm
+  split: dev
+- id: DEV-DLG-25
+  dialect: msa
+  turns:
+  - قرض بقيمة ربع مليون دينار، سداد خلال أربعة أشهر، ودخلي الشهري ثلاثمئة ألف.
+  expected:
+    amount: 250000
+    term_months: 4
+    monthly_income: 300000
+    action: confirm
+  split: dev

@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: DEV-D-04
+split: dev
+scenario: Moderate, applicant aged 68 (E1)
+as_of: '2026-10-31'
+applicant:
+  name: نبراس مازن الحمداني
+  gender: m
+  age: 68
+  residence: الرمادي، الأنبار
+  governorate: الأنبار
+  identity_document_provided: true
+  wallet_phone: SYN-0032
+  activity: مخزن مواد غذائية
+  activity_start: 2008-06
+  declared_net_monthly_income: 1600000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: نبراس مازن الحمداني
+  - type: lease_contract
+    name_on_document: نبراس مازن الحمداني
+request:
+  amount: 9500000
+  term_months: 25
+wallet: wallets/DEV-D-04.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - E1
+  product: moderate
+  activity_months: 220
+  installment: 475000
+  e3_ratio: 0.2969
+  typical_monthly_income: 1605000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

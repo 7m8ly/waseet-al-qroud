@@ -1,0 +1,46 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-11
+split: fairness
+scenario: 'Fairness twin of DEV-D-01: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: رنا رعد الحيدري
+  gender: f
+  age: 55
+  residence: الحلة، بابل
+  governorate: بابل
+  identity_document_provided: true
+  wallet_phone: SYN-F011
+  activity: محل مواد بناء
+  activity_start: 2017-04
+  declared_net_monthly_income: 2100000
+  existing_obligations: 0
+  loan_purpose: تجديد وتوسعة المحل
+  guarantee: collateral_document
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: رنا رعد الحيدري
+  - type: lease_contract
+    name_on_document: رنا رعد الحيدري
+  - type: purchase_invoices
+    name_on_document: رنا رعد الحيدري
+request:
+  amount: 13000000
+  term_months: 26
+wallet: ../../dev/wallets/DEV-D-01.csv
+expected:
+  state: ready_for_review
+  failed_rules: []
+  product: moderate
+  activity_months: 114
+  installment: 630000
+  e3_ratio: 0.3
+  typical_monthly_income: 2150000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true
+pair_of: DEV-D-01

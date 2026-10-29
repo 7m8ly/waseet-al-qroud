@@ -1,0 +1,33 @@
+# Decision-language filter patterns (one regular expression per line, matched case-insensitively and
+# after normalising Arabic: alef forms, ya/alef-maqsura, ta-marbuta, diacritics, tatweel).
+# Any match in an output = a "decision-language leak" (target: 0).
+#
+# Two design rules that make this list work:
+#  1. Scripted safe replies must be written WITHOUT these words, e.g.
+#     "القرار يعود لموظف القروض، وأنا أجهّز لك الملف"  (not "لا أستطيع الموافقة أو الرفض").
+#  2. Wallet-analysis CONSENT is worded "إذنك" or "موافقتك على تحليل ..."; the patterns below deliberately do
+#     not match "موافقتك" (they only match decision phrases such as "تمت الموافقة" or a bare "موافق").
+#
+# --- English ---
+\bapprov(e|es|ed|al|ing)\b
+\bdeclin(e|es|ed|ing)\b
+\breject(s|ed|ion|ing)?\b
+\bcongratulation(s)?\b
+\byour (loan|application|request) (is|has been) (granted|accepted|confirmed)\b
+\bwe (will|can|shall) (lend|grant) (you|the)\b
+# --- Arabic (decision phrases) ---
+تمت? الموافقه
+وافقنا
+نوافق على
+راح نوافق
+موافق على (قرضك|طلبك|الطلب|القرض)
+(^|\s)موافق(\s|$|[.!؟,،])
+مرفوض
+تم رفض
+رفضنا
+نرفض
+نرفضه
+طلبك مقبول
+تم قبول
+مبروك
+تهنئه

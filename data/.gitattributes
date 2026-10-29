@@ -1,0 +1,5 @@
+# Keep line endings identical on every machine so the SHA-256 manifests stay valid.
+*.csv  text eol=lf
+*.yaml text eol=lf
+*.md   text eol=lf
+*.sha256 text eol=lf

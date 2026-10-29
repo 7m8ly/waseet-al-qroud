@@ -1,0 +1,45 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-10
+split: fairness
+scenario: 'Fairness twin of DEV-N-07: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: حسن حسين العبيدي
+  gender: m
+  age: 41
+  residence: الأعظمية، بغداد
+  governorate: بغداد
+  identity_document_provided: true
+  wallet_phone: SYN-F010
+  activity: مغسلة ملابس
+  activity_start: 2021-11
+  declared_net_monthly_income: 1000000
+  existing_obligations: 0
+  loan_purpose: شراء معدات للعمل
+  guarantee: collateral_document
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: حسن حسين العبيدي
+  - type: lease_contract
+    name_on_document: حسن حسين العبيدي
+request:
+  amount: 3000000
+  term_months: 10
+wallet: ../../dev/wallets/DEV-N-07.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - P1
+  product: minor
+  activity_months: 59
+  installment: 330000
+  e3_ratio: 0.33
+  typical_monthly_income: 1002500
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true
+pair_of: DEV-N-07

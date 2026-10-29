@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-13
+split: fairness
+scenario: 'Fairness twin of DEV-D-03: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: مازن ميثم الأسدي
+  gender: m
+  age: 46
+  residence: كربلاء، كربلاء
+  governorate: كربلاء
+  identity_document_provided: true
+  wallet_phone: SYN-F013
+  activity: محل ملابس بالجملة
+  activity_start: 2016-03
+  declared_net_monthly_income: 2500000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: collateral_document
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: مازن ميثم الأسدي
+request:
+  amount: 14000000
+  term_months: 28
+wallet: ../../dev/wallets/DEV-D-03.csv
+expected:
+  state: needs_clarification
+  failed_rules:
+  - X1
+  product: moderate
+  activity_months: 127
+  installment: 640000
+  e3_ratio: 0.256
+  e3_ratio_wallet: 0.5311
+  typical_monthly_income: 1205000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true
+pair_of: DEV-D-03

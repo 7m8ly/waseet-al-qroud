@@ -29,8 +29,9 @@ Tools: `check_completeness` · `compute_indicators` · `run_rules` · `compute_i
 | `rulebook/` | `RULEBOOK.md` (readable) and `rulebook.yaml` (what the engine reads), v1.1 |
 | `engine/` | deterministic core |
 | `llm/` | prompts, extraction schemas, guards |
-| `data/` | synthetic profiles and dialogues, generation seeds and prompts |
-| `eval/` | frozen held-out set (git tag `testset-frozen`), promptfoo configs, results |
+| `data/` | synthetic cases, wallets, dialogues, adversarial messages, build scripts (see `data/README.md`) |
+| `data/heldout/` | the frozen exam (git tag `testset-frozen`), with `MANIFEST.sha256` |
+| `eval/` | tests (pytest), promptfoo configs, results |
 | `app/` | Streamlit app (applicant and underwriter views) |
 | `docs/` | `interviews/`, `MODELS.md`, `FAILURE_MODES.md`, `DECISIONS.md` |
 

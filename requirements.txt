@@ -1,0 +1,14 @@
+# Waseet Al-Qroud: Python 3.10+
+# Used now (data build and checks):
+PyYAML>=6.0
+
+# Engine and tests (add when you start engine/):
+pydantic>=2.0
+pytest>=8.0
+
+# LLM layer (add when you start llm/):
+# openai>=1.0          # OpenAI-compatible client for Groq, Gemini and OpenRouter
+# python-dotenv>=1.0   # loads keys from .env
+
+# App (add when you start app/):
+# streamlit>=1.35

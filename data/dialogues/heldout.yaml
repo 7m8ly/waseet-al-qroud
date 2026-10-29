@@ -1,0 +1,169 @@
+# Synthetic application dialogues. Expected values were derived by hand from the text.
+# Dialect labels are approximate; a native reader should review before the set is frozen.
+- id: HO-DLG-01
+  dialect: baghdadi
+  turns:
+  - هلا، اريد قرض مليون ونص، أسدده بسنة ونص
+  - دخلي بالشهر حدود ثمنميه ألف
+  expected:
+    amount: 1500000
+    term_months: 18
+    monthly_income: 800000
+    action: confirm
+  split: heldout
+- id: HO-DLG-02
+  dialect: baghdadi
+  turns:
+  - شكد گدر آخذ قرض؟ اريد نص مليون بس، وأرجعه بستة شهور
+  - أشتغل سواق تكسي، يطلع لي بالشهر ميتين وخمسين ألف
+  expected:
+    amount: 500000
+    term_months: 6
+    monthly_income: 250000
+    action: confirm
+  split: heldout
+- id: HO-DLG-03
+  dialect: baghdadi
+  turns:
+  - اريد مليونين ونص، اسدده بسنتين
+  - دخلي مليون وربع بالشهر
+  expected:
+    amount: 2500000
+    term_months: 24
+    monthly_income: 1250000
+    action: confirm
+  split: heldout
+- id: HO-DLG-04
+  dialect: baghdadi
+  turns:
+  - اريد قرض حتى اوسّع المحل، بس ما أدري شكد اگدر آخذ
+  expected:
+    amount: null
+    term_months: null
+    monthly_income: null
+    action: ask_again
+  note: no amount, term or income given
+  split: heldout
+- id: HO-DLG-05
+  dialect: basrawi
+  turns:
+  - هلا ويّاك، اريد قرض مليون وربع، واسدّه بسنة
+  - دخلي بالشهر هواي مو ثابت، تقريباً ستميه ألف
+  expected:
+    amount: 1250000
+    term_months: 12
+    monthly_income: 600000
+    action: confirm
+  split: heldout
+- id: HO-DLG-06
+  dialect: basrawi
+  turns:
+  - اريد ثلاث ملايين، اسدّدهم بسنة وثمان شهور
+  - آخذ بالشهر مليون وخمسميّة
+  expected:
+    amount: 3000000
+    term_months: 20
+    monthly_income: 1500000
+    action: confirm
+  split: heldout
+- id: HO-DLG-07
+  dialect: basrawi
+  turns:
+  - اريد مبلغ زين، بس مو هواي. اشوكت اگدر اخذه؟
+  expected:
+    amount: null
+    term_months: null
+    monthly_income: null
+    action: ask_again
+  note: '''a decent amount, not a lot'' is not a figure'
+  split: heldout
+- id: HO-DLG-08
+  dialect: mosuli
+  turns:
+  - السلام عليكم، آني اريد قرض مليون إلا ربع، أسدّده بثمان شهور
+  - دخلي بالشهر خمسمية ألف
+  expected:
+    amount: 750000
+    term_months: 8
+    monthly_income: 500000
+    action: confirm
+  split: heldout
+- id: HO-DLG-09
+  dialect: mosuli
+  turns:
+  - هسّة محتاج مليونين لأجل المحل، وأسدّدهم بسنة
+  - الشغل كلّش متقلّب، بس بالمتوسط ثمنمية ألف
+  expected:
+    amount: 2000000
+    term_months: 12
+    monthly_income: 800000
+    action: confirm
+  split: heldout
+- id: HO-DLG-10
+  dialect: mosuli
+  turns:
+  - اريد قرض مليون وأسدّده بسنة
+  - دخلي خمسمية ألف بالشهر
+  - لا لحظة، يمكن مليون ونص بالشهر، ما أدري بالضبط
+  expected:
+    amount: 1000000
+    term_months: 12
+    monthly_income: null
+    action: ask_again
+  note: 'contradictory income (X3): must be re-asked, not stored'
+  split: heldout
+- id: HO-DLG-11
+  dialect: arabizi
+  turns:
+  - hala, areed qarid milyon w nos, w asaddid b sana w nos
+  - dakhli b shahar 800 alf
+  expected:
+    amount: 1500000
+    term_months: 18
+    monthly_income: 800000
+    action: confirm
+  split: heldout
+- id: HO-DLG-12
+  dialect: arabizi
+  turns:
+  - salam, areed 500 alf bs, arjeaa b sitta shhor
+  - dakhli hdood 350 alf
+  expected:
+    amount: 500000
+    term_months: 6
+    monthly_income: 350000
+    action: confirm
+  split: heldout
+- id: HO-DLG-13
+  dialect: arabizi
+  turns:
+  - shlonkum, areed rub3 milyon, w asaddid b 4 shhor
+  - m3ash 400 alf b shahar
+  expected:
+    amount: 250000
+    term_months: 4
+    monthly_income: 400000
+    action: confirm
+  split: heldout
+- id: HO-DLG-14
+  dialect: msa
+  turns:
+  - السلام عليكم، أرغب في الحصول على قرض بقيمة مليون وخمسمئة ألف دينار، وأود سداده خلال ثمانية عشر شهراً.
+  - دخلي الشهري الصافي حوالي تسعمئة ألف دينار.
+  expected:
+    amount: 1500000
+    term_months: 18
+    monthly_income: 900000
+    action: confirm
+  split: heldout
+- id: HO-DLG-15
+  dialect: msa
+  turns:
+  - أحتاج إلى قرض قدره ثلاثة ملايين دينار لمدة سنتين.
+  - يبلغ صافي دخلي الشهري مليوناً ومئتي ألف دينار.
+  expected:
+    amount: 3000000
+    term_months: 24
+    monthly_income: 1200000
+    action: confirm
+  split: heldout

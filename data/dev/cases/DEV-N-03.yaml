@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: DEV-N-03
+split: dev
+scenario: Minor, activity only 24 months (E2)
+as_of: '2026-10-31'
+applicant:
+  name: سجى مازن الحمداني
+  gender: f
+  age: 35
+  residence: المنصور، بغداد
+  governorate: بغداد
+  identity_document_provided: true
+  wallet_phone: SYN-0023
+  activity: مكتب طباعة وتصوير
+  activity_start: 2024-10
+  declared_net_monthly_income: 900000
+  existing_obligations: 0
+  loan_purpose: شراء ماكينة طباعة
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: سجى مازن الحمداني
+  - type: lease_contract
+    name_on_document: سجى مازن الحمداني
+request:
+  amount: 4500000
+  term_months: 18
+wallet: wallets/DEV-N-03.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - E2
+  product: minor
+  activity_months: 24
+  installment: 295000
+  e3_ratio: 0.3278
+  typical_monthly_income: 897500
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

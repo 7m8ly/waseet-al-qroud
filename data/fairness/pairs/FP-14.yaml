@@ -1,0 +1,47 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-14
+split: fairness
+scenario: 'Fairness twin of DEV-D-05: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: شهد فراس الطائي
+  gender: f
+  age: 44
+  residence: الموصل الجديدة، نينوى
+  governorate: نينوى
+  identity_document_provided: true
+  wallet_phone: SYN-F014
+  activity: ورشة تصنيع
+  activity_start: 2018-10
+  declared_net_monthly_income: 1250000
+  existing_obligations: 0
+  loan_purpose: شراء معدات للعمل
+  guarantee: collateral_document
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: شهد فراس الطائي
+  - type: purchase_invoices
+    name_on_document: شهد فراس الطائي
+request:
+  amount: 15000000
+  term_months: 30
+wallet: ../../dev/wallets/DEV-D-05.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - E3
+  product: moderate
+  activity_months: 96
+  installment: 650000
+  e3_ratio: 0.52
+  typical_monthly_income: 1255000
+  data_depth: sufficient
+  labels: []
+  alternative:
+    amount: 14420000
+    term_months: 30
+  field_visit_required: true
+pair_of: DEV-D-05

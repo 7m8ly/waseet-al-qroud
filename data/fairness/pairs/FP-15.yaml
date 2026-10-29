@@ -1,0 +1,47 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-15
+split: fairness
+scenario: 'Fairness twin of DEV-D-06: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: أحمد كرار البياتي
+  gender: m
+  age: 39
+  residence: الكرادة، بغداد
+  governorate: بغداد
+  identity_document_provided: true
+  wallet_phone: SYN-F015
+  activity: صالون وتجهيزات تجميل
+  activity_start: 2019-06
+  declared_net_monthly_income: 1300000
+  existing_obligations: 0
+  loan_purpose: تجديد وتوسعة المحل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: أحمد كرار البياتي
+  - type: lease_contract
+    name_on_document: أحمد كرار البياتي
+request:
+  amount: 12000000
+  term_months: 21
+wallet: ../../dev/wallets/DEV-D-06.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - E3
+  product: moderate
+  activity_months: 88
+  installment: 691429
+  e3_ratio: 0.5319
+  typical_monthly_income: 1300000
+  data_depth: sufficient
+  labels: []
+  alternative:
+    amount: 12000000
+    term_months: 23
+  field_visit_required: true
+pair_of: DEV-D-06

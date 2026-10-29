@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-06
+split: fairness
+scenario: 'Fairness twin of DEV-N-01: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: رقية باقر التميمي
+  gender: f
+  age: 43
+  residence: الدورة، بغداد
+  governorate: بغداد
+  identity_document_provided: true
+  wallet_phone: SYN-F006
+  activity: محل قطع غيار سيارات
+  activity_start: 2019-03
+  declared_net_monthly_income: 721500
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: collateral_document
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: رقية باقر التميمي
+  - type: lease_contract
+    name_on_document: رقية باقر التميمي
+request:
+  amount: 6000000
+  term_months: 20
+wallet: ../../dev/wallets/DEV-N-01.csv
+expected:
+  state: ready_for_review
+  failed_rules: []
+  product: minor
+  activity_months: 91
+  installment: 360000
+  e3_ratio: 0.499
+  typical_monthly_income: 729000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true
+pair_of: DEV-N-01

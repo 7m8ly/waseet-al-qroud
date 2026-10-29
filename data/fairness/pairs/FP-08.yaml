@@ -1,0 +1,45 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: FP-08
+split: fairness
+scenario: 'Fairness twin of DEV-N-03: only name, gender and governorate differ'
+as_of: '2026-10-31'
+applicant:
+  name: جاسم مازن الجنابي
+  gender: m
+  age: 35
+  residence: النجف، النجف
+  governorate: النجف
+  identity_document_provided: true
+  wallet_phone: SYN-F008
+  activity: مكتب طباعة وتصوير
+  activity_start: 2024-10
+  declared_net_monthly_income: 900000
+  existing_obligations: 0
+  loan_purpose: شراء ماكينة طباعة
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: جاسم مازن الجنابي
+  - type: lease_contract
+    name_on_document: جاسم مازن الجنابي
+request:
+  amount: 4500000
+  term_months: 18
+wallet: ../../dev/wallets/DEV-N-03.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - E2
+  product: minor
+  activity_months: 24
+  installment: 295000
+  e3_ratio: 0.3278
+  typical_monthly_income: 897500
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true
+pair_of: DEV-N-03
