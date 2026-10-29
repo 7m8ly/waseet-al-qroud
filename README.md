@@ -37,7 +37,7 @@ Tools: `check_completeness` · `compute_indicators` · `run_rules` · `compute_i
 
 ## Status (update at every milestone)
 - [x] Design brief submitted (22 Oct 2026)
-- [ ] Held-out set frozen (by 29 Oct)
+- [x] Held-out set frozen (by 29 Oct)
 - [ ] Engine and tests, Micro first (by 31 Oct)
 - [ ] LLM layer + Streamlit end to end (by 5 Nov)
 - [ ] MVP submitted (8 Nov)
