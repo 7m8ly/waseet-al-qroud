@@ -1,0 +1,41 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: HO-M-02
+split: heldout
+scenario: 'Micro, boundary: installment exactly 50.0% of income (E3 passes, <=)'
+as_of: '2026-10-31'
+applicant:
+  name: حسين حسن الفتلاوي
+  gender: m
+  age: 34
+  residence: الحلة، بابل
+  governorate: بابل
+  identity_document_provided: true
+  wallet_phone: SYN-0002
+  activity: بقالة
+  activity_start: 2024-03
+  declared_net_monthly_income: 424000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: lease_contract
+    name_on_document: حسين حسن الفتلاوي
+request:
+  amount: 1200000
+  term_months: 6
+wallet: wallets/HO-M-02.csv
+expected:
+  state: ready_for_review
+  failed_rules: []
+  product: micro
+  activity_months: 31
+  installment: 212000
+  e3_ratio: 0.5
+  typical_monthly_income: 430000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

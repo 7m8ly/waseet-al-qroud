@@ -1,0 +1,45 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: HO-D-01
+split: heldout
+scenario: Moderate, strong file
+as_of: '2026-10-31'
+applicant:
+  name: ليث علي الفتلاوي
+  gender: m
+  age: 47
+  residence: الناصرية، ذي قار
+  governorate: ذي قار
+  identity_document_provided: true
+  wallet_phone: SYN-0009
+  activity: مطعم
+  activity_start: 2018-02
+  declared_net_monthly_income: 2400000
+  existing_obligations: 0
+  loan_purpose: تجديد وتوسعة المحل
+  guarantee: collateral_document
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: ليث علي الفتلاوي
+  - type: lease_contract
+    name_on_document: ليث علي الفتلاوي
+  - type: purchase_invoices
+    name_on_document: ليث علي الفتلاوي
+request:
+  amount: 14400000
+  term_months: 24
+wallet: wallets/HO-D-01.csv
+expected:
+  state: ready_for_review
+  failed_rules: []
+  product: moderate
+  activity_months: 104
+  installment: 744000
+  e3_ratio: 0.31
+  typical_monthly_income: 2475000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

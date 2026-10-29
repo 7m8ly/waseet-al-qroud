@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: HO-N-03
+split: heldout
+scenario: 'Minor, activity only 30 months, 36 required (E2): outside limits, no alternative'
+as_of: '2026-10-31'
+applicant:
+  name: كرار سعد الخفاجي
+  gender: m
+  age: 33
+  residence: المنصور، بغداد
+  governorate: بغداد
+  identity_document_provided: true
+  wallet_phone: SYN-0007
+  activity: محل أدوات كهربائية
+  activity_start: 2024-04
+  declared_net_monthly_income: 950000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: كرار سعد الخفاجي
+  - type: lease_contract
+    name_on_document: كرار سعد الخفاجي
+request:
+  amount: 3500000
+  term_months: 14
+wallet: wallets/HO-N-03.csv
+expected:
+  state: outside_product_limits
+  failed_rules:
+  - E2
+  product: minor
+  activity_months: 30
+  installment: 285000
+  e3_ratio: 0.3
+  typical_monthly_income: 955000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

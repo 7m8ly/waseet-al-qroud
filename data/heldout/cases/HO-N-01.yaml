@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: HO-N-01
+split: heldout
+scenario: 'Minor, guarantee missing (C9): incomplete'
+as_of: '2026-10-31'
+applicant:
+  name: علي كرار الخفاجي
+  gender: m
+  age: 38
+  residence: الموصل الجديدة، نينوى
+  governorate: نينوى
+  identity_document_provided: true
+  wallet_phone: SYN-0005
+  activity: ورشة نجارة
+  activity_start: 2021-06
+  declared_net_monthly_income: 1100000
+  existing_obligations: 0
+  loan_purpose: شراء معدات للعمل
+  guarantee: null
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: علي كرار الخفاجي
+  - type: purchase_invoices
+    name_on_document: علي كرار الخفاجي
+request:
+  amount: 4000000
+  term_months: 16
+wallet: wallets/HO-N-01.csv
+expected:
+  state: incomplete
+  failed_rules:
+  - C9
+  product: minor
+  activity_months: 64
+  installment: 290000
+  e3_ratio: 0.2636
+  typical_monthly_income: 1115000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

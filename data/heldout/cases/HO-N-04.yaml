@@ -1,0 +1,44 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: HO-N-04
+split: heldout
+scenario: 'Minor, business licence is in a different name from the applicant (X2): needs clarification'
+as_of: '2026-10-31'
+applicant:
+  name: حسين عمر الكعبي
+  gender: m
+  age: 42
+  residence: الزبير، البصرة
+  governorate: البصرة
+  identity_document_provided: true
+  wallet_phone: SYN-0008
+  activity: محل ملابس
+  activity_start: 2020-08
+  declared_net_monthly_income: 1300000
+  existing_obligations: 0
+  loan_purpose: شراء بضاعة للمحل
+  guarantee: guarantor
+  consent_wallet: true
+  documents:
+  - type: business_licence
+    name_on_document: حسين جاسم العبيدي
+  - type: lease_contract
+    name_on_document: حسين عمر الكعبي
+request:
+  amount: 5000000
+  term_months: 20
+wallet: wallets/HO-N-04.csv
+expected:
+  state: needs_clarification
+  failed_rules:
+  - X2
+  product: minor
+  activity_months: 74
+  installment: 300000
+  e3_ratio: 0.2308
+  typical_monthly_income: 1320000
+  data_depth: sufficient
+  labels: []
+  alternative: null
+  field_visit_required: true

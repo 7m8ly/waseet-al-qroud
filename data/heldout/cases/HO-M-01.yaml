@@ -1,0 +1,46 @@
+# Synthetic test case. No real person, document or transaction.
+# `expected` is the planted outcome from the rulebook (v1.2), written by hand in cases_spec.py;
+# it is NOT produced by the engine. Money in IQD; as_of fixes the 'today' for all date maths.
+id: HO-M-01
+split: heldout
+scenario: 'Micro, incomplete file: loan purpose missing (C7) and the wallet-analysis decision not recorded
+  (C10)'
+as_of: '2026-10-31'
+applicant:
+  name: أيمن باقر السامرائي
+  gender: m
+  age: 41
+  residence: الدورة، بغداد
+  governorate: بغداد
+  identity_document_provided: true
+  wallet_phone: SYN-0001
+  activity: بقالة
+  activity_start: 2023-05
+  declared_net_monthly_income: 660000
+  existing_obligations: 0
+  loan_purpose: null
+  guarantee: guarantor
+  consent_wallet: null
+  documents:
+  - type: lease_contract
+    name_on_document: أيمن باقر السامرائي
+  - type: business_licence
+    name_on_document: أيمن باقر السامرائي
+request:
+  amount: 1800000
+  term_months: 10
+wallet: null
+expected:
+  state: incomplete
+  failed_rules:
+  - C7
+  - C10
+  product: micro
+  activity_months: 41
+  installment: 198000
+  e3_ratio: 0.3
+  typical_monthly_income: null
+  data_depth: not_read
+  labels: []
+  alternative: null
+  field_visit_required: true
